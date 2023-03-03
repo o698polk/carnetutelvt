@@ -1,0 +1,159 @@
+﻿@inject IHttpContextAccessor context;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - carnetutelvt</title>
+    <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />-->
+    <!-- <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />-->
+    <link rel="stylesheet" href="~/carnetutelvt.styles.css" asp-append-version="true" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap4" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css " >
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css" >
+    <link rel="stylesheet" href="~/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="~/fonts/icomoon/style.css" asp-append-version=" true">
+    <link rel="stylesheet" href="~/fonts/flaticon/font/flaticon.css" asp-append-version=" true">
+    <link rel="stylesheet" href="~/css/daterangepicker.css" asp-append-version=" true">
+    <link rel="stylesheet" href="~/css/aos.css" asp-append-version=" true">
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version=" true">
+
+</head>
+<body>
+ <!--    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">carnetutelvt</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header> -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <nav class="site-nav">
+        <div class="container">
+            <div class="site-navigation">
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="logo m-0"><strong> UTELVT CARNET  </strong> <span class=""></span></a>
+               <!--  <a asp-area="" asp-controller="Usertbs" asp-action="CorreoEnviar" class="logo m-0"><strong> Correo </strong> <span class=""></span></a>
+             -->  
+
+             <ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right">
+                   
+                    @if (context.HttpContext.Session.GetInt32("Id") > 0)
+                    {
+                         <li >
+                            <a style="text-transform: uppercase; color:black;" asp-area="" asp-controller="Usertbs" asp-action="Tablero"> <strong>@context.HttpContext.Session.GetString("name")</strong> </a>
+                        </li>
+
+                        <li>
+                            <a  style="text-transform: uppercase; color:red;" asp-area="" asp-controller="Usertbs" asp-action="Logout">Salir</a>
+                        </li>
+                      
+                       
+                    }
+                    else
+                    {
+                        <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                         <li><a asp-area="" asp-controller="Usertbs" asp-action="Create">Crear Cuenta</a></li>
+                          <li><a asp-area="" asp-controller="Usertbs" asp-action="Login">Iniciar Sesion</a></li>
+                    }
+                 
+                
+                   
+                   
+                  
+                </ul>
+
+                <a href="#" class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
+                    <span></span>
+                </a>
+
+            </div>
+        </div>
+    </nav>
+    
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+
+
+    <!--<footer class="border-top footer text-muted">
+      <div class="container">
+            &copy; 2023 - carnetutelvt - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+        </footer>-->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.animateNumber.min.js"></script>
+    <script src="~/js/jquery.waypoints.min.js"></script>
+    <script src="~/js/jquery.fancybox.min.js"></script>
+    <script src="~/js/aos.js" asp-append-version="true"></script>
+    <script src="~/js/moment.min.js"></script>
+    <script src="~/js/daterangepicker.js"></script>
+
+    <script src="~/js/typed.js"></script>
+    <script>
+        $(function () {
+            var slides = $('.slides'),
+                images = slides.find('img');
+
+            images.each(function (i) {
+                $(this).attr('data-id', i + 1);
+            })
+
+            var typed = new Typed('.typed-words', {
+                strings: ["Que esperas", " Actualizate", " Vamos", " UTELVT"],
+                typeSpeed: 80,
+                backSpeed: 80,
+                backDelay: 4000,
+                startDelay: 1000,
+                loop: true,
+                showCursor: true,
+                preStringTyped: (arrayPos, self) => {
+                    arrayPos++;
+                    console.log(arrayPos);
+                    $('.slides img').removeClass('active');
+                    $('.slides img[data-id="' + arrayPos + '"]').addClass('active');
+                }
+
+            });
+        })
+    </script>
+
+    <script src="~/js/custom.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

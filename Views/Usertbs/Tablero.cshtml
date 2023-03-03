@@ -1,0 +1,91 @@
+﻿@inject IHttpContextAccessor context;
+@model carnetutelvt.Models.Detallestb
+@{
+    ViewData["Title"] = "Tablero";
+}
+<div class="hero">
+    <!-- <center> <h1>Completa tus datos  para generar el Carnet</h1>></center>-->
+    <center>
+        
+  
+    <div class="container">
+        
+                    <form class="form" method="post"  enctype="multipart/form-data" action="/Detallestbs/Edit">
+
+                        <div class="row mb-2">
+                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                                <div class="form-group">
+                                    <input asp-for="Fullname" class="form-control" placeholder="Nombre Completo" />
+                                    <span asp-validation-for="Fullname" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                                <div class="form-group">
+
+                                    <input asp-for="Surnames" class="form-control" placeholder="Apellidos" />
+                                    <span asp-validation-for="Surnames" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                                <div class="form-group">
+
+                                    <input asp-for="Specialty" class="form-control" placeholder="Expecialidad" />
+                                    <span asp-validation-for="Specialty" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                                <div class="form-group">
+
+                                    <input asp-for="Faculty " class="form-control" placeholder="Facultad" />
+                                    <span asp-validation-for="Faculty " class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                                <div class="form-group">
+
+                                    <input asp-for="Ci" class="form-control" placeholder="Cedula" />
+                                    <span asp-validation-for="Ci" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                                <div class="form-group">
+
+                                    <input type="file" asp-for="Imgcarnet" class="form-control />
+                                    <span asp-validation-for="Imgcarnet" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                                <div class="form-group">
+                                    <input type="submit" value="Generar" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="container">
+                        <center>
+                            <h1 class="mb-5"><span class="d-block"></span>Completa tus datos  para generar el Carnet <span class="typed-words"></span></h1>
+                        </center>
+                 
+        </div>
+    </div>
+    <h1> @ViewData["Error"]</h1>
+    </center>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
