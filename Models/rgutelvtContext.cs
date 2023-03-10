@@ -109,7 +109,12 @@ namespace carnetutelvt.Models
                     .IsUnicode(false)
                     .HasColumnName("passwords");
 
-                entity.Property(e => e.Verifyuser).HasColumnName("verifyuser");
+				entity.Property(e => e.Rol)
+					.HasMaxLength(10)
+				   .IsUnicode(false)
+				   .HasColumnName("rol");
+
+				entity.Property(e => e.Verifyuser).HasColumnName("verifyuser");
             });
 
             OnModelCreatingPartial(modelBuilder);

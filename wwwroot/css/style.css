@@ -1,9 +1,13 @@
 body {
-  font-family: "Inter", sans-serif;
-  line-height: 1.5;
-  background: #ffffff;
-  overflow-x: hidden;
-  font-size: 14px; }
+    font-family: "Inter", sans-serif;
+    line-height: 1.5;
+     background: #ffffff;
+    overflow-x: hidden;
+    font-size: 14px;
+ /*  background-image: url('images/Utelvtfondo.png');
+    background-repeat: no-repeat;
+    background-size: cover;*/
+}
   body:before {
     content: "";
     position: fixed;

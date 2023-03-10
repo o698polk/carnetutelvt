@@ -23,30 +23,11 @@
     <link rel="stylesheet" href="~/css/daterangepicker.css" asp-append-version=" true">
     <link rel="stylesheet" href="~/css/aos.css" asp-append-version=" true">
     <link rel="stylesheet" href="~/css/style.css" asp-append-version=" true">
-
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version=" true">
+    <link rel="stylesheet" href="~/table-06/css/style.css" asp-append-version=" true">
 </head>
-<body>
- <!--    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">carnetutelvt</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header> -->
+<body >
+ 
     <div class="site-mobile-menu site-navbar-target">
         <div class="site-mobile-menu-header">
             <div class="site-mobile-menu-close">
@@ -68,20 +49,23 @@
                     @if (context.HttpContext.Session.GetInt32("Id") > 0)
                     {
                          <li >
-                            <a style="text-transform: uppercase; color:black;" asp-area="" asp-controller="Usertbs" asp-action="Tablero"> <strong>@context.HttpContext.Session.GetString("name")</strong> </a>
+                            <a type="button" class="btn btn-info" style="text-transform: uppercase; color:black;" asp-area="" asp-controller="Usertbs" asp-action="Tablero"> <strong>@context.HttpContext.Session.GetString("name")</strong> </a>
                         </li>
 
-                        <li>
-                            <a  style="text-transform: uppercase; color:red;" asp-area="" asp-controller="Usertbs" asp-action="Logout">Salir</a>
-                        </li>
-                      
                        
+                        if (context.HttpContext.Session.GetString("Rol") == "1")
+                        {
+                            <li><a asp-area="" type="button" class="btn btn-secondary" asp-controller="Usertbs" asp-action="Index">Panel Admin</a></li>
+                        }
+                         <li>
+                            <a type="button" class="btn btn-danger" asp-area="" asp-controller="Usertbs" asp-action="Logout">Salir</a>
+                        </li>
                     }
                     else
                     {
-                        <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                         <li><a asp-area="" asp-controller="Usertbs" asp-action="Create">Crear Cuenta</a></li>
-                          <li><a asp-area="" asp-controller="Usertbs" asp-action="Login">Iniciar Sesion</a></li>
+                        <li><a asp-area="" type="button " class="btn btn-info" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-area="" type="button" class="btn btn-secondary" asp-controller="Usertbs" asp-action="Register">Crear Cuenta</a></li>
+                        <li><a asp-area="" type="button" class="btn btn-success" asp-controller="Usertbs" asp-action="Login">Iniciar Sesion</a></li>
                     }
                  
                 
@@ -103,16 +87,12 @@
         </main>
 
 
-    <!--<footer class="border-top footer text-muted">
-      <div class="container">
-            &copy; 2023 - carnetutelvt - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-        </footer>-->
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <script src="~/js/jquery-3.4.1.min.js"></script>
+   <!--  <script src="~/js/jquery-3.4.1.min.js"></script>-->
     <script src="~/js/popper.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/owl.carousel.min.js"></script>
@@ -122,8 +102,14 @@
     <script src="~/js/aos.js" asp-append-version="true"></script>
     <script src="~/js/moment.min.js"></script>
     <script src="~/js/daterangepicker.js"></script>
-
+    <script src="~/js/custom.js"></script>
     <script src="~/js/typed.js"></script>
+    <!-- 
+    <script src="~/table-06/js/typed.js"></script>
+    <script src="~/table-06/js/jquery.min.js"></script>
+    <script src="~/table-06/js/popper.js"></script>
+    <script src="~/table-06/js/bootstrap.min.js"></script>
+    <script src="~/table-06/js/main.js"></script>-->
     <script>
         $(function () {
             var slides = $('.slides'),
@@ -152,7 +138,7 @@
         })
     </script>
 
-    <script src="~/js/custom.js"></script>
+    
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

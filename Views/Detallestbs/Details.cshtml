@@ -4,11 +4,11 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="hero">
+    <h1>Perfil de detalle de cada usuario</h1>
+    <div class="container">
 
-<div>
-    <h4>Detallestb</h4>
-    <hr />
+        <form class="form">
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Fullname)
@@ -65,8 +65,12 @@
             @Html.DisplayFor(model => model.IduserNavigation.Id)
         </dd>
     </dl>
-</div>
+        </form>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+        <a type="submit" class="btn btn-success" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+        <a type="submit" class="btn btn-dark" asp-action="Index">Back</a>
+ </div>
+ 
+   
+

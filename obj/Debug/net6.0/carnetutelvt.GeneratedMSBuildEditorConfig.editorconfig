@@ -9,85 +9,89 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = carnetutelvt
 build_property.RootNamespace = carnetutelvt
-build_property.ProjectDir = C:\Users\polkv\OneDrive\Imágenes\InfoCode\VISUAL STUDIOS\Proyectos\carnetutelvt\
+build_property.ProjectDir = C:\Users\polkv\Videos\prt\carnetutelvt\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\polkv\OneDrive\Imágenes\InfoCode\VISUAL STUDIOS\Proyectos\carnetutelvt
+build_property.MSBuildProjectDirectory = C:\Users\polkv\Videos\prt\carnetutelvt
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Detallestbs/Create.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Detallestbs/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV0YWxsZXN0YnNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Detallestbs/Delete.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Detallestbs/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV0YWxsZXN0YnNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Detallestbs/Details.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Detallestbs/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV0YWxsZXN0YnNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Detallestbs/Edit.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Detallestbs/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV0YWxsZXN0YnNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Detallestbs/Index.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Detallestbs/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV0YWxsZXN0YnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Home/Index.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Home/Privacy.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Shared/Error.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Usertbs/Create.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Usertbs/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnRic1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Usertbs/Delete.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Usertbs/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnRic1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Usertbs/Details.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Usertbs/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnRic1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Usertbs/Edit.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Usertbs/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnRic1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Usertbs/Index.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Usertbs/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnRic1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Usertbs/Login.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Usertbs/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnRic1xMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Usertbs/Tablero.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Usertbs/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnRic1xSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Usertbs/Tablero.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnRic1xUYWJsZXJvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/_ViewImports.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/_ViewStart.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/polkv/OneDrive/Imágenes/InfoCode/VISUAL STUDIOS/Proyectos/carnetutelvt/Views/Shared/_Layout.cshtml]
+[C:/Users/polkv/Videos/prt/carnetutelvt/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ftu6isuv13

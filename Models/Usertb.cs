@@ -17,7 +17,7 @@ namespace carnetutelvt.Models
         public DateTime? Datecreate { get; set; }
         public string? Numberverify { get; set; }
         public int? Verifyuser { get; set; }
-
-        public virtual ICollection<Detallestb> Detallestbs { get; set; }
+		public string? Rol{ get; set; }
+		public virtual ICollection<Detallestb> Detallestbs { get; set; }
     }
 }

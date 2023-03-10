@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sQ/D4EtS9NaDv2IznI+cwpm6WrXaOYrH4K+898fKJ2Y6CFE0bNyuZNgkKYFgB75rpo/FtixyZ2WwRjPu7L2X5w==",
+  "dgSpecHash": "7sVJi5p/VowL0q3CFTGjncREAUGM5iJ5VfkQA0De9Ec2Zq38DbKOPQe5keYDrpTw21U6V8LpXzzhP9wBplDHwg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\polkv\\OneDrive\\Imágenes\\InfoCode\\VISUAL STUDIOS\\Proyectos\\carnetutelvt\\carnetutelvt.csproj",
+  "projectFilePath": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\carnetutelvt.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\polkv\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\polkv\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

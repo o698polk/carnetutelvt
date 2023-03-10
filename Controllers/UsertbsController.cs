@@ -12,55 +12,114 @@ using Microsoft.AspNetCore.Hosting;
 using System.Net;
 using System.Diagnostics.Metrics;
 using Microsoft.AspNetCore.Http;
-
+using carnetutelvt.Controllers;
 namespace carnetutelvt.Controllers
 {
     public class UsertbsController : Controller
     {
         private readonly rgutelvtContext _context;
+        private readonly rgutelvtContext _contextdeta;
         private const string rp0 = "0",rp1="1";
         private readonly IWebHostEnvironment _env;
         private readonly IHttpContextAccessor _conter;
-        public UsertbsController(rgutelvtContext context, IWebHostEnvironment env, IHttpContextAccessor conter)
+       
+        
+       
+        public UsertbsController(rgutelvtContext context, rgutelvtContext contextdeta, IWebHostEnvironment env, IHttpContextAccessor conter)
         {
             _context = context;
             _env = env;
             _conter = conter;
+            _contextdeta = contextdeta;
+          
+
         }
 
         // GET: Usertbs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Usertbs.ToListAsync());
+
+            if (_conter.HttpContext.Session.GetInt32("Id") == null || _conter.HttpContext.Session.GetInt32("Id") < 0 || _conter.HttpContext.Session.GetString("Rol")!="1")
+
+            {
+
+                return RedirectToAction(nameof(Login));
+
+            }
+            else
+            {
+                return View(await _context.Usertbs.ToListAsync());
+            }
+           
         }
 
         // GET: Usertbs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Usertbs == null)
-            {
-                return NotFound();
-            }
 
-            var usertb = await _context.Usertbs
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (usertb == null)
-            {
-                return NotFound();
-            }
 
-            return View(usertb);
+            if (_conter.HttpContext.Session.GetInt32("Id") == null || _conter.HttpContext.Session.GetInt32("Id") < 0 || _conter.HttpContext.Session.GetString("Rol") != "1")
+
+            {
+
+                return RedirectToAction(nameof(Login));
+
+            }
+            else
+            {
+                if (id == null || _context.Usertbs == null)
+                {
+                    return NotFound();
+                }
+
+                var usertb = await _context.Usertbs
+                    .FirstOrDefaultAsync(m => m.Id == id);
+                if (usertb == null)
+                {
+                    return NotFound();
+                }
+
+                return View(usertb);
+            }
         }
 
         // GET: Usertbs/Create
         public IActionResult Create()
         {
+
+            if (_conter.HttpContext.Session.GetInt32("Id") == null || _conter.HttpContext.Session.GetInt32("Id") < 0 || _conter.HttpContext.Session.GetString("Rol") != "1")
+
+            {
+
+                return RedirectToAction(nameof(Login));
+
+            }
+            else
+            {
+
+
+                return View();
+            }
+        }
+        public IActionResult Register()
+        {
             return View();
         }
         public IActionResult Login()
         {
-            ViewData["Error"] = "";
-            return View();
+            if (_conter.HttpContext.Session.GetInt32("Id") != null )
+
+            {
+
+                return RedirectToAction(nameof(Tablero));
+
+            }
+            else
+            {
+
+                ViewData["Error"] = "";
+                return View();
+            }
         }
         public dynamic CorreoEnviar()
         {
@@ -78,13 +137,50 @@ namespace carnetutelvt.Controllers
 
         public IActionResult Tablero()
         {
-            if (_conter.HttpContext.Session.GetInt32("Id") > 0)
+
+            if (_conter.HttpContext.Session.GetInt32("Id") == null || _conter.HttpContext.Session.GetInt32("Id") < 0)
+
             {
-                return View();
+
+                return RedirectToAction(nameof(Login));
+
             }
             else
             {
-                return RedirectToAction(nameof(Login));
+
+                if (_conter.HttpContext.Session.GetInt32("Id") != null)
+
+                {
+                    var detallestb = new Detallestb();
+                    if (_conter.HttpContext.Session.GetInt32("Id") > 0)
+                    {
+                        int ids = Convert.ToInt32(_conter.HttpContext.Session.GetInt32("Id"));
+
+                        detallestb = _contextdeta.Detallestbs.Where(e => e.Iduser == ids).FirstOrDefault();
+                        if (detallestb == null)
+                        {
+                            return NotFound();
+                        }
+                    }
+
+                    ViewData["Iduser"] = new SelectList(_context.Usertbs, "Id", "Id", detallestb.Iduser);
+                    ViewData["Datecreate"] = detallestb.Datecreate;
+                    ViewData["Imgcarnet"] = detallestb.Imgcarnet;
+                 
+                    ViewData["Fullname"] = detallestb.Fullname;
+                    ViewData["Surnames"] = detallestb.Surnames;
+                  
+                    ViewData["Specialty"] = detallestb.Specialty;
+                    ViewData["Faculty"] = detallestb.Faculty;
+                    ViewData["Ci"] = detallestb.Ci;
+                    ViewData["email"] = _conter.HttpContext.Session.GetString("email");
+                    return View(detallestb);
+
+                }
+                else
+                {
+                    return RedirectToAction(nameof(Login));
+                }
             }
         }
         // Encriptar datos
@@ -101,6 +197,7 @@ namespace carnetutelvt.Controllers
 
         public dynamic EnviarCorreo(string para,string asunto,string bodyst)
         {
+          
             try
             {
                 MailMessage mailMessage = new MailMessage();
@@ -115,8 +212,9 @@ namespace carnetutelvt.Controllers
                 string rutaArchivo = Path.Combine(_env.ContentRootPath, "../Temporal", "");
 
                 // configuracion de SMTP carnetel123
-                SmtpClient smtep = new SmtpClient();
-                    smtep.Host = "smtp.gamil.com";
+
+                    SmtpClient smtep = new SmtpClient();
+                    smtep.Host = "smtp.live.com";
                     smtep.Port = 25;
                     smtep.EnableSsl = true;
                     smtep.UseDefaultCredentials = true;
@@ -147,7 +245,7 @@ namespace carnetutelvt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Email,Passwords")] Usertb usertb)
+        public async Task<IActionResult> Register([Bind("Email,Passwords")] Usertb usertb)
         {
             if (ModelState.IsValid)
             {
@@ -160,11 +258,27 @@ namespace carnetutelvt.Controllers
                 else
                 {
 
+                    Random rnd = new Random();
+                    long ran = rnd.Next(5000870, 8000008);
                     usertb.Passwords = EncrypData(usertb.Passwords);
-
+                    usertb.Datecreate = DateTime.Now;
+                    usertb.Dateupdate = DateTime.Now;
+                    usertb.Numberverify = ran.ToString();
+                    usertb.Verifyuser = 0;
+                    usertb.Rol = "0";
+                    Detallestb dll = new Detallestb();
                     _context.Add(usertb);
-                    await _context.SaveChangesAsync();
 
+                    await _context.SaveChangesAsync();
+                    var usernw = _context.Usertbs.Where(u => u.Email == usertb.Email).FirstOrDefault();
+                    if (usernw != null)
+                    {
+                        dll.Iduser = usernw.Id;
+                        dll.Datecreate = DateTime.Now;
+                        dll.Dateupdate = DateTime.Now;
+                        _contextdeta.Add(dll);
+                        await _contextdeta.SaveChangesAsync();
+                    }
                     ViewData["Error"] = rp1;
                     return View();
                     //  return RedirectToAction(nameof(Index));
@@ -173,20 +287,80 @@ namespace carnetutelvt.Controllers
             return View(usertb);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Email,Passwords,Rol")] Usertb usertb)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                var user = _context.Usertbs.Where(u => u.Email == usertb.Email).FirstOrDefault();
+                if (user != null)
+                {
+                    ViewData["Error"] = rp0;
+                    return View();
+                }
+                else
+                {
+
+
+
+                    Random rnd = new Random();
+                    long ran = rnd.Next(5000870,8000008);
+                    usertb.Passwords = EncrypData(usertb.Passwords);
+                    usertb.Datecreate = DateTime.Now;
+                    usertb.Dateupdate = DateTime.Now;
+                    usertb.Numberverify = ran.ToString();
+                    usertb.Verifyuser = 1;
+                    Detallestb dll = new Detallestb();
+                   
+                    _context.Add(usertb);
+                    await _context.SaveChangesAsync();
+
+                    var usernw = _context.Usertbs.Where(u => u.Email == usertb.Email).FirstOrDefault();
+                    if (usernw != null)
+                    {
+                        dll.Iduser = usernw.Id;
+                        dll.Datecreate = DateTime.Now;
+                        dll.Dateupdate = DateTime.Now;
+                        _contextdeta.Add(dll);
+                        await _contextdeta.SaveChangesAsync();
+                    }
+                   
+                    ViewData["Error"] = rp1;
+                    //return View();
+                     return RedirectToAction(nameof(Index));
+                }
+            }
+            return RedirectToAction(nameof(Index)); 
+        }
+
         // GET: Usertbs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Usertbs == null)
-            {
-                return NotFound();
-            }
+            if (_conter.HttpContext.Session.GetInt32("Id") == null || _conter.HttpContext.Session.GetInt32("Id") < 0 || _conter.HttpContext.Session.GetString("Rol") != "1")
 
-            var usertb = await _context.Usertbs.FindAsync(id);
-            if (usertb == null)
             {
-                return NotFound();
+
+                return RedirectToAction(nameof(Login));
+
             }
-            return View(usertb);
+            else
+            {
+
+                if (id == null || _context.Usertbs == null)
+                {
+                    return NotFound();
+                }
+
+                var usertb = await _context.Usertbs.FindAsync(id);
+                if (usertb == null)
+                {
+                    return NotFound();
+                }
+                ViewData["Datecreate"] = usertb.Datecreate;
+                return View(usertb);
+            }
         }
 
         // POST: Usertbs/Edit/5
@@ -194,8 +368,9 @@ namespace carnetutelvt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Passwords,Dateupdate,Datecreate,Numberverify,Verifyuser")] Usertb usertb)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Passwords,Verifyuser,Numberverify,Rol,Datecreate")] Usertb usertb)
         {
+            
             if (id != usertb.Id)
             {
                 return NotFound();
@@ -205,6 +380,8 @@ namespace carnetutelvt.Controllers
             {
                 try
                 {
+                    usertb.Passwords = EncrypData(usertb.Passwords);
+                    usertb.Dateupdate = DateTime.Now;
                     _context.Update(usertb);
                     await _context.SaveChangesAsync();
                 }
@@ -232,7 +409,7 @@ namespace carnetutelvt.Controllers
         {
             if (userdt.Email == null || userdt.Passwords == null)
             {
-                ViewData["Error"] = "Vacio todo";
+                ViewData["Error"] = rp0;
                 return View();
             }
 
@@ -244,7 +421,7 @@ namespace carnetutelvt.Controllers
                     var user = _context.Usertbs.Where(u => u.Email == userdt.Email && u.Passwords == userdt.Passwords).FirstOrDefault();
                     if (user == null)
                     {
-                        ViewData["Error"] = "Datos Incorrectos";
+                        ViewData["Error"] = rp0;
                         return View();
                     }
                     else
@@ -253,7 +430,7 @@ namespace carnetutelvt.Controllers
                         _conter.HttpContext.Session.SetString("name", cadena[0]);
                         _conter.HttpContext.Session.SetString("email", user.Email);
                         _conter.HttpContext.Session.SetInt32("Id", user.Id);
-
+                        _conter.HttpContext.Session.SetString("Rol", user.Rol);
                         return RedirectToAction(nameof(Tablero));
                     }
 
@@ -280,19 +457,30 @@ namespace carnetutelvt.Controllers
         // GET: Usertbs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Usertbs == null)
-            {
-                return NotFound();
-            }
+            if (_conter.HttpContext.Session.GetInt32("Id") == null || _conter.HttpContext.Session.GetInt32("Id") < 0 || _conter.HttpContext.Session.GetString("Rol") != "1")
 
-            var usertb = await _context.Usertbs
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (usertb == null)
             {
-                return NotFound();
-            }
 
-            return View(usertb);
+                return RedirectToAction(nameof(Login));
+
+            }
+            else
+            {
+
+                if (id == null || _context.Usertbs == null)
+                {
+                    return NotFound();
+                }
+
+                var usertb = await _context.Usertbs
+                    .FirstOrDefaultAsync(m => m.Id == id);
+                if (usertb == null)
+                {
+                    return NotFound();
+                }
+
+                return View(usertb);
+            }
         }
 
         // POST: Usertbs/Delete/5
@@ -300,13 +488,20 @@ namespace carnetutelvt.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+          
             if (_context.Usertbs == null)
             {
                 return Problem("Entity set 'rgutelvtContext.Usertbs'  is null.");
             }
+            var detallestb =  _contextdeta.Detallestbs.Where(e=> e.Iduser==id).FirstOrDefault();
+            if (detallestb != null)
+            {
+                _contextdeta.Detallestbs.Remove(detallestb);
+            }
             var usertb = await _context.Usertbs.FindAsync(id);
             if (usertb != null)
             {
+               
                 _context.Usertbs.Remove(usertb);
             }
             
@@ -314,6 +509,9 @@ namespace carnetutelvt.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        
+
+       
         private bool UsertbExists(int id)
         {
           return _context.Usertbs.Any(e => e.Id == id);

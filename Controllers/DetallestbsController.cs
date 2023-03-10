@@ -6,54 +6,84 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using carnetutelvt.Models;
+using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow;
+using Microsoft.Extensions.Hosting;
+using NuGet.Protocol.Plugins;
+using System.Diagnostics.Metrics;
 
 namespace carnetutelvt.Controllers
 {
     public class DetallestbsController : Controller
     {
         private readonly rgutelvtContext _context;
-
-        public DetallestbsController(rgutelvtContext context)
+  
+        private readonly IWebHostEnvironment _environment;
+        private readonly IHttpContextAccessor _conter;
+        public DetallestbsController(rgutelvtContext context, IWebHostEnvironment environment, IHttpContextAccessor conter)
         {
             _context = context;
+            _environment = environment;
+            _conter = conter;
         }
 
         // GET: Detallestbs
         public async Task<IActionResult> Index()
         {
-            var rgutelvtContext = _context.Detallestbs.Include(d => d.IduserNavigation);
-            return View(await rgutelvtContext.ToListAsync());
+            if (_conter.HttpContext.Session.GetInt32("Id") == null || _conter.HttpContext.Session.GetInt32("Id") < 0 || _conter.HttpContext.Session.GetString("Rol") != "1")
+            {
+                return RedirectToAction( "Login", "Usertbs");
+            }
+            else
+            {
+                var rgutelvtContext = _context.Detallestbs.Include(d => d.IduserNavigation);
+                return View(await rgutelvtContext.ToListAsync());
+            }
         }
 
         // GET: Detallestbs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Detallestbs == null)
+            if (_conter.HttpContext.Session.GetInt32("Id") == null || _conter.HttpContext.Session.GetInt32("Id") < 0 || _conter.HttpContext.Session.GetString("Rol") != "1")
             {
-                return NotFound();
+                return RedirectToAction("Login", "Usertbs");
             }
-
-            var detallestb = await _context.Detallestbs
-                .Include(d => d.IduserNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (detallestb == null)
+            else
             {
-                return NotFound();
-            }
+                if (id == null || _context.Detallestbs == null)
+                {
+                    return NotFound();
+                }
 
-            return View(detallestb);
+                var detallestb = await _context.Detallestbs
+                    .Include(d => d.IduserNavigation)
+                    .FirstOrDefaultAsync(m => m.Id == id);
+                if (detallestb == null)
+                {
+                    return NotFound();
+                }
+
+                return View(detallestb);
+            }
         }
 
         // GET: Detallestbs/Create
         public IActionResult Create()
         {
-            ViewData["Iduser"] = new SelectList(_context.Usertbs, "Id", "Id");
-            return View();
+            if (_conter.HttpContext.Session.GetInt32("Id") == null || _conter.HttpContext.Session.GetInt32("Id") < 0 || _conter.HttpContext.Session.GetString("Rol") != "1")
+            {
+                return RedirectToAction("Login", "Usertbs");
+            }
+            else
+            {
+                ViewData["Iduser"] = new SelectList(_context.Usertbs, "Id", "Id");
+                return View();
+            }
         }
 
         // POST: Detallestbs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Fullname,Surnames,Specialty,Faculty,Ci,Imgcarnet,Iduser,Dateupdate,Datecreate")] Detallestb detallestb)
@@ -71,18 +101,27 @@ namespace carnetutelvt.Controllers
         // GET: Detallestbs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Detallestbs == null)
+            if (_conter.HttpContext.Session.GetInt32("Id") == null || _conter.HttpContext.Session.GetInt32("Id") < 0 || _conter.HttpContext.Session.GetString("Rol") != "1")
             {
-                return NotFound();
+                return RedirectToAction("Login", "Usertbs");
             }
+            else
+            {
+                if (id == null || _context.Detallestbs == null)
+                {
+                    return NotFound();
+                }
 
-            var detallestb = await _context.Detallestbs.FindAsync(id);
-            if (detallestb == null)
-            {
-                return NotFound();
+                var detallestb = await _context.Detallestbs.FindAsync(id);
+                if (detallestb == null)
+                {
+                    return NotFound();
+                }
+                ViewData["Iduser"] = new SelectList(_context.Usertbs, "Id", "Id", detallestb.Iduser);
+                ViewData["Datecreate"] = detallestb.Datecreate;
+                ViewData["Imgcarnet"] = detallestb.Imgcarnet;
+                return View(detallestb);
             }
-            ViewData["Iduser"] = new SelectList(_context.Usertbs, "Id", "Id", detallestb.Iduser);
-            return View(detallestb);
         }
 
         // POST: Detallestbs/Edit/5
@@ -90,8 +129,9 @@ namespace carnetutelvt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Fullname,Surnames,Specialty,Faculty,Ci,Imgcarnet,Iduser,Dateupdate,Datecreate")] Detallestb detallestb)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Fullname,Surnames,Specialty,Faculty,Ci,Iduser,Datecreate,Imgcarnet")] Detallestb detallestb, IFormFile Imgcarnett)
         {
+         
             if (id != detallestb.Id)
             {
                 return NotFound();
@@ -101,6 +141,19 @@ namespace carnetutelvt.Controllers
             {
                 try
                 {
+					
+					if (Imgcarnett != null)
+                    {
+                        if (detallestb.Imgcarnet != null)
+                        {
+                            var uploads = Path.Combine(_environment.WebRootPath, "uploads\\" + detallestb.Imgcarnet);
+                            System.IO.File.Delete(uploads);
+                        }
+                   
+                        detallestb.Imgcarnet = subirimg(Imgcarnett);
+					}
+                   
+                    detallestb.Dateupdate= DateTime.Now;
                     _context.Update(detallestb);
                     await _context.SaveChangesAsync();
                 }
@@ -121,23 +174,57 @@ namespace carnetutelvt.Controllers
             return View(detallestb);
         }
 
+        
+        // Funcion de subir imagen
+        public string subirimg(IFormFile archivo)
+        {
+             var fileName="";
+                if (archivo != null && archivo.Length > 0)
+                {
+                    var uploads = Path.Combine(_environment.WebRootPath, "uploads");
+                    if (!Directory.Exists(uploads))
+                    {
+                        Directory.CreateDirectory(uploads);
+                    }
+
+                     fileName = Guid.NewGuid().ToString() + Path.GetExtension(archivo.FileName);
+                    var filePath = Path.Combine(uploads, fileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        archivo.CopyToAsync(fileStream);
+                    }
+
+                     
+                }
+
+
+
+            return Path.Combine( fileName); ;
+        }
         // GET: Detallestbs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Detallestbs == null)
+            if (_conter.HttpContext.Session.GetInt32("Id") == null || _conter.HttpContext.Session.GetInt32("Id") < 0 || _conter.HttpContext.Session.GetString("Rol") != "1")
             {
-                return NotFound();
+                return RedirectToAction("Login", "Usertbs");
             }
-
-            var detallestb = await _context.Detallestbs
-                .Include(d => d.IduserNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (detallestb == null)
+            else
             {
-                return NotFound();
-            }
+                if (id == null || _context.Detallestbs == null)
+                {
+                    return NotFound();
+                }
 
-            return View(detallestb);
+                var detallestb = await _context.Detallestbs
+                    .Include(d => d.IduserNavigation)
+                    .FirstOrDefaultAsync(m => m.Id == id);
+                if (detallestb == null)
+                {
+                    return NotFound();
+                }
+
+                return View(detallestb);
+            }
         }
 
         // POST: Detallestbs/Delete/5

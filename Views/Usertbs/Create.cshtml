@@ -6,85 +6,50 @@
 
 
 
-<!--<h4>Usertb</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Passwords" class="control-label"></label>
-                <input asp-for="Passwords" class="form-control" />
-                <span asp-validation-for="Passwords" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Dateupdate" class="control-label"></label>
-                <input asp-for="Dateupdate" class="form-control" />
-                <span asp-validation-for="Dateupdate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Datecreate" class="control-label"></label>
-                <input asp-for="Datecreate" class="form-control" />
-                <span asp-validation-for="Datecreate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Numberverify" class="control-label"></label>
-                <input asp-for="Numberverify" class="form-control" />
-                <span asp-validation-for="Numberverify" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Verifyuser" class="control-label"></label>
-                <input asp-for="Verifyuser" class="form-control" />
-                <span asp-validation-for="Verifyuser" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
- -->
+
  
 <div class="hero">
-    <h1>Crear Cuenta</h1>
+    <center> <h1>Crear Cuenta</h1></center>
 	<div class="container">
 		
 							<form class="form" asp-action="Create">
 							
-								<div class="row mb-2">
-                                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                                            <div class="row mb-2">
+                                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
                                             <div class="form-group">
 
-                                    <input asp-for="Email" class="form-control" placeholder="Correo Institucional" />
+                                            <input asp-for="Email" class="form-control" placeholder="Correo Institucional" />
                                             <span asp-validation-for="Email" class="text-danger"></span>
                                             </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
                                             <div class="form-group">
 
-                        <input type="password"  asp-for="Passwords" class="form-control" placeholder="Clave" />
+                                            <input type="password"  asp-for="Passwords" class="form-control" placeholder="Clave" />
                                             <span asp-validation-for="Passwords" class="text-danger"></span>
                                             </div>
-                                    </div>
-                                <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                                <div class="form-group">
-
-                        <input type="password" asp-for="Passwords" class="form-control" placeholder="Repetir clave" />
-                                    <span asp-validation-for="Passwords" class="text-danger"></span>
-                                </div>
-                            </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                                            <div class="form-group">
+                                            <select asp-for="Rol" class="form-select" aria-label="Elegir Rol">
+                                            
+                                            <option value="0" selected>User</option>
+                                            <option value="1">Admin</option>
+                           
+                                            </select>
+            
+                                            <span asp-validation-for="Rol" class="text-danger"></span>
+                                            </div>
+                                            </div>
+                                
                             <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
                             <div class="form-group">
                                 <input type="submit" value="Create" class="btn btn-primary" />
                             </div>
                             </div>
+            </div>
                     </form>
-					
+        <a type="submit" class="btn btn-dark" asp-action="Index">Back</a>
 			</div>
     <h1> @ViewData["Error"]</h1>
 		</div>

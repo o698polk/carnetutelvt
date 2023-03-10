@@ -9,66 +9,162 @@
         
   
     <div class="container">
-        
-                    <form class="form" method="post"  enctype="multipart/form-data" action="/Detallestbs/Edit">
 
-                        <div class="row mb-2">
-                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                                <div class="form-group">
-                                    <input asp-for="Fullname" class="form-control" placeholder="Nombre Completo" />
-                                    <span asp-validation-for="Fullname" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                                <div class="form-group">
+            @if (ViewBag.Imgcarnet == null)
+            {
+                <form asp-controller="Detallestbs" asp-action="Edit" class="form"  enctype="multipart/form-data">
 
-                                    <input asp-for="Surnames" class="form-control" placeholder="Apellidos" />
-                                    <span asp-validation-for="Surnames" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                                <div class="form-group">
+                    <div class="row mb-2">
+                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                            <div class="form-group">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="Id" />
 
-                                    <input asp-for="Specialty" class="form-control" placeholder="Expecialidad" />
-                                    <span asp-validation-for="Specialty" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                                <div class="form-group">
-
-                                    <input asp-for="Faculty " class="form-control" placeholder="Facultad" />
-                                    <span asp-validation-for="Faculty " class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                                <div class="form-group">
-
-                                    <input asp-for="Ci" class="form-control" placeholder="Cedula" />
-                                    <span asp-validation-for="Ci" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                                <div class="form-group">
-
-                                    <input type="file" asp-for="Imgcarnet" class="form-control />
-                                    <span asp-validation-for="Imgcarnet" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                                <div class="form-group">
-                                    <input type="submit" value="Generar" class="btn btn-primary" />
-                                </div>
                             </div>
                         </div>
-                    </form>
-                    <div class="container">
-                        <center>
+
+                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                            <div class="form-group">
+
+                                <input asp-for="Fullname" class="form-control" required placeholder="Nombres" />
+                                <span asp-validation-for="Fullname" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                            <div class="form-group">
+
+                                <input asp-for="Surnames" class="form-control" required placeholder="Aplellidos" />
+                                <span asp-validation-for="Surnames" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                            <div class="form-group">
+                                <select asp-for="Faculty" class="form-control" aria-label="Facultad" required placeholder="Facultad">
+
+                                    <option value="Facultad de Ingenierías" selected>Facultad de Ingenierías</option>
+                                    <option value="Facultad de Ciencias Sociales y de Servicios">Facultad de Ciencias Sociales y de Servicios</option>
+                                    <option value="Facultad de Ciencias Administrativas y Económicas">Facultad de Ciencias Administrativas y Económicas</option>
+                                    <option value="Facultad de Ciencias Agropecuarias">Facultad de Ciencias Agropecuarias</option>
+                                    <option value="Facultad de la Pedagogía">Facultad de la Pedagogía</option>
+
+                                </select>
+
+                                <span asp-validation-for="Faculty" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                            <div class="form-group">
+                                <select asp-for="Specialty" class="form-control" aria-label="Especialidad" required placeholder="Especialidad">
+
+                                    <option value="Ingeniería Mecánica" selected>Ingeniería Mecánica</option>
+                                    <option value="Ingeniería Eléctrica">Ingeniería Eléctrica</option>
+                                    <option value="Ingeniería Química ">Ingeniería Química </option>
+                                    <option value="Ingeniería en Sistemas Informáticos ">Ingeniería en Sistemas Informáticos </option>
+                                    <option value="Sociología">Sociología</option>
+                                    <option value="Trabajo Social ">Trabajo Social </option>
+                                    <option value="Hotelería y Turismo ">Hotelería y Turismo </option>
+                                    <option value="Ingeniería en Administración de Empresa ">Ingeniería en Administración de Empresa </option>
+                                    <option value="Ingeniería en Contabilidad y Auditoría ">Ingeniería en Contabilidad y Auditoría </option>
+                                    <option value="Ingeniería en Comercio ">Ingeniería en Comercio </option>
+                                    <option value="Ingeniería en Agronomía">Ingeniería en Agronomía</option>
+                                    <option value="Ingeniería Forestal">Ingeniería Forestal</option>
+                                    <option value="Ingeniería Zootécnica">Ingeniería Zootécnica</option>
+                                    <option value="Ciencias Experimentales de las Matemáticas y la Física">Ciencias Experimentales de las Matemáticas y la Física.</option>
+                                    <option value="Ciencias Experimentales de la Química y Bilogía">Ciencias Experimentales de la Química y Bilogía</option>
+                                    <option value="Licenciatura en Educación Básica">Licenciatura en Educación Básica</option>
+                                    <option value="Pedagogía de la lengua y Literatura   ">Pedagogía de la lengua y Literatura   </option>
+                                    <option value="Pedagogía de la Actividad Física y Deporte ">Pedagogía de la Actividad Física y Deporte </option>
+                                    <option value="Licenciatura en Educación Inicial ">Licenciatura en Educación Inicial </option>
+                                </select>
+
+                                <span asp-validation-for="Specialty" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                            <div class="form-group">
+
+                                <input asp-for="Ci" class="form-control" required placeholder="Cedula" />
+                                <span asp-validation-for="Ci" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                            <div class="form-group">
+                                <label for="archivo">Seleccionar foto modo canet</label>
+                                <input asp-for="Imgcarnet" class="form-control" id="archivo" asp-items="ViewBag.Imgcarnet" accept="image/png,image/jpeg" readonly placeholder="Foto" />
+                                <span asp-validation-for="Imgcarnet" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                            <div class="form-group">
+
+                                <input type="file" name="Imgcarnett" class="form-control" />
+
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                            <div class="form-group">
+
+                                <select asp-for="Iduser" class="form-control" asp-items="ViewBag.Iduser" readonly></select>
+                                <span asp-validation-for="Iduser" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                            <div class="form-group">
+
+                                    <input asp-for="Datecreate" class="form-control" asp-items="ViewBag.Datecreate" readonly></input>
+                                <span asp-validation-for="Datecreate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="container">
+                    <center>
                             <h1 class="mb-5"><span class="d-block"></span>Completa tus datos  para generar el Carnet <span class="typed-words"></span></h1>
                         </center>
-                 
-        </div>
+                 <h1> @ViewData["Error"]</h1>
+                </div>
+            }
+            else
+            {
+                <div class="container carnet" >
+                    <div class="container">
+                        <div class="content">
+                    <img src="/uploads\@ViewBag.Imgcarnet" alt="Mi Foto">
+                    <h1>@ViewBag.Fullname </h1>
+                    <h2>@ViewBag.Surnames</h2>
+                       
+                        <div class="datos">
+                        <p>Facultad: @ViewBag.Faculty</p>
+                        <p>Especialidad: @ViewBag.Specialty</p>
+                        <p>Correo: @ViewBag.emailm</p>
+                        <p>Ci: @ViewBag.Ci</p>
+                        <p>UTELVT</p>
+                        </div>
+                        </div>
+                        </div>
+                 </div>
+            }
+           
+
     </div>
-    <h1> @ViewData["Error"]</h1>
+    
     </center>
 </div>
 

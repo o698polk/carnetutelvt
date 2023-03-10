@@ -4,62 +4,131 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Passwords)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Dateupdate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Datecreate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Numberverify)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Verifyuser)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Passwords)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dateupdate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Datecreate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Numberverify)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Verifyuser)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="hero">
+
+
+	<div class="container">
+
+		
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-6 text-center mb-4">
+						<center>	<h2> Lista de usuarios</h2></center>
+
+					</div>
+
+				</div>
+				<h3><a type="button" class="btn btn-success" asp-action="Create">Crear Nuevo</a><a type="button" class="btn btn-secondary" asp-controller="Detallestbs" asp-action="Index">Detalles</a></h3>
+				<div class="row">
+					<div class="col-md-12">
+
+						<div class="table-wrap">
+							<table class="table">
+								<thead class="thead-primary">
+									<tr>
+										<th>Select</th>
+										<th>@Html.DisplayNameFor(model => model.Email)</th>
+										<th> @Html.DisplayNameFor(model => model.Passwords)</th>
+										<th> @Html.DisplayNameFor(model => model.Numberverify)</th>
+										<th> @Html.DisplayNameFor(model => model.Verifyuser)</th>
+										<th> @Html.DisplayNameFor(model => model.Rol)</th>
+									
+										<th> @Html.DisplayNameFor(model => model.Dateupdate)</th>
+										<th> @Html.DisplayNameFor(model => model.Datecreate)</th>
+								
+									
+								
+										
+										<th>Edit</th>
+										<th>Details</th>
+										<th>Delete</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var item in Model)
+									{
+										<tr class="alert" role="alert">
+											<td>
+												<label class="checkbox-wrap checkbox-primary">
+													<input type="checkbox" checked>
+													<span class="checkmark"></span>
+												</label>
+											</td>
+											
+											<td>
+												<div class="email">
+
+												<span><input type="text" value=" @Html.DisplayFor(modelItem => item.Email)" readonly></span>
+												</div>
+											</td>
+											<td>
+												<div class="email">
+
+												<span><input type="text" value="@Html.DisplayFor(modelItem => item.Passwords)" readonly></span>
+												</div>
+											</td>
+											<td>
+												<div class="email">
+
+												<span><input type="text" value="@Html.DisplayFor(modelItem => item.Numberverify)" readonly></span>
+												</div>
+											</td>
+											<td>
+												<div class="email">
+
+												<span><input type="text" value="@Html.DisplayFor(modelItem => item.Verifyuser)" readonly></span>
+												</div>
+											</td>
+											<td>
+												<div class="email">
+
+												<span><input type="text" value="@Html.DisplayFor(modelItem => item.Rol)" readonly></span>
+												</div>
+											</td>
+											<td>
+												<div class="email">
+
+												<span><input type="text" value="@Html.DisplayFor(modelItem => item.Dateupdate)" readonly></span>
+												</div>
+											</td>
+											<td>
+												<div class="email">
+
+												<span><input type="text" value="@Html.DisplayFor(modelItem => item.Datecreate)" readonly></span>
+												</div>
+											</td>
+											
+											<td>
+												<div class="email">
+													<a type="submit" class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+												</div>
+											</td>
+											<td>
+												<div class="email">
+
+													<a type="submit" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+												</div>
+											</td>
+											<td>
+												<div class="email">
+
+													<a type="submit" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+												</div>
+											</td>
+
+
+										</tr>
+
+
+									}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+	</div>
+</div>

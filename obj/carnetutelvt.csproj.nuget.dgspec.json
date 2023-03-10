@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\polkv\\OneDrive\\Imágenes\\InfoCode\\VISUAL STUDIOS\\Proyectos\\carnetutelvt\\carnetutelvt.csproj": {}
+    "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\carnetutelvt.csproj": {}
   },
   "projects": {
-    "C:\\Users\\polkv\\OneDrive\\Imágenes\\InfoCode\\VISUAL STUDIOS\\Proyectos\\carnetutelvt\\carnetutelvt.csproj": {
+    "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\carnetutelvt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\polkv\\OneDrive\\Imágenes\\InfoCode\\VISUAL STUDIOS\\Proyectos\\carnetutelvt\\carnetutelvt.csproj",
+        "projectUniqueName": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\carnetutelvt.csproj",
         "projectName": "carnetutelvt",
-        "projectPath": "C:\\Users\\polkv\\OneDrive\\Imágenes\\InfoCode\\VISUAL STUDIOS\\Proyectos\\carnetutelvt\\carnetutelvt.csproj",
+        "projectPath": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\carnetutelvt.csproj",
         "packagesPath": "C:\\Users\\polkv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\polkv\\OneDrive\\Imágenes\\InfoCode\\VISUAL STUDIOS\\Proyectos\\carnetutelvt\\obj\\",
+        "outputPath": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
