@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
+using System.Drawing;
+using MessagingToolkit.QRCode.Codec;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -63,7 +66,22 @@ namespace carnetutelvt.Controllers
 
 
 
-		
+		//Generar Codigo QR
+
+
+        public void GenerarQr(string webtex)
+        {
+            QRCodeEncoder code = new QRCodeEncoder();
+            Bitmap img = code.Encode(webtex);
+            System.Drawing.Image Qr = (System.Drawing.Image)img;
+            using (MemoryStream mem = new MemoryStream())
+            {
+                Qr.Save(mem, System.Drawing.Imaging.ImageFormat.Jpeg);
+                byte[] imgbyte = mem.ToArray();
+                ViewData["qr"] = "data:image/git;base64,"+Convert.ToBase64String(imgbyte);
+            }
+        }
+
 
         // GET: Usertbs/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -94,6 +112,7 @@ namespace carnetutelvt.Controllers
                 return View(usertb);
             }
         }
+      
 
         // GET: Usertbs/Create
         public IActionResult Create()
@@ -186,6 +205,8 @@ namespace carnetutelvt.Controllers
                     ViewData["Faculty"] = detallestb.Faculty;
                     ViewData["Ci"] = detallestb.Ci;
                     ViewData["email"] = _conter.HttpContext.Session.GetString("email");
+                  //  GenerarQr("https://localhost:7288/Detallestbs/Estudiantes/"+detallestb.Iduser);
+                    GenerarQr("http://polkdev.somee.com/Detallestbs/Estudiantes/"+detallestb.Iduser);
                     return View(detallestb);
 
                 }

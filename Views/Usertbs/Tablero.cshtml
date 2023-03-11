@@ -143,20 +143,22 @@
             }
             else
             {
-                <div class="container carnet" >
-                    <div class="container">
+                <div class="carnet" >
+                 
                         <div class="content">
-                    <img src="/uploads\@ViewBag.Imgcarnet" alt="Mi Foto">
-                    <h1>@ViewBag.Fullname </h1>
-                    <h2>@ViewBag.Surnames</h2>
+                         <div class="barralogo"> <img src="/carnet\ESCUDETO_UTE-LVT.png" id="logout"alt="Mi Foto">UTELVT</div>  
+                            <img src="/uploads\@ViewBag.Imgcarnet" id="perfilimg" alt="Mi Foto">
+                        <h1>@ViewBag.Fullname @ViewBag.Surnames </h1>
+                        <h2><strong> ID:</strong> @ViewBag.Ci</h2>
                        
                         <div class="datos">
-                        <p>Facultad: @ViewBag.Faculty</p>
-                        <p>Especialidad: @ViewBag.Specialty</p>
-                        <p>Correo: @ViewBag.email</p>
-                        <p>Ci: @ViewBag.Ci</p>
-                        <p>UTELVT</p>
-                        </div>
+                                <p><strong> Facultad:</strong> @ViewBag.Faculty</p>
+                                <p><strong> Especialidad:</strong> @ViewBag.Specialty</p>
+                                <p><strong>Correo:</strong>  @ViewBag.email</p>
+
+                            <p id="qrcode"> <img src="@ViewBag.qr" id="qrcodeimg" alt="Mi Foto"></p>
+                                <p id="link">utelvt.edu.ec</p>
+                      
                         </div>
                         </div>
                  </div>

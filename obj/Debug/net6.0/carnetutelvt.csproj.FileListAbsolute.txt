@@ -542,3 +542,4 @@ C:\Users\polkv\Videos\prt\carnetutelvt\obj\Debug\net6.0\refint\carnetutelvt.dll
 C:\Users\polkv\Videos\prt\carnetutelvt\obj\Debug\net6.0\carnetutelvt.pdb
 C:\Users\polkv\Videos\prt\carnetutelvt\obj\Debug\net6.0\carnetutelvt.genruntimeconfig.cache
 C:\Users\polkv\Videos\prt\carnetutelvt\obj\Debug\net6.0\ref\carnetutelvt.dll
+C:\Users\polkv\Videos\prt\carnetutelvt\bin\Debug\net6.0\MessagingToolkit.QRCode.dll

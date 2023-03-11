@@ -75,6 +75,26 @@ namespace carnetutelvt.Controllers
                 return View(detallestb);
             }
         }
+        // GET: Detallestbs/Estudiantes/5
+        public async Task<IActionResult> Estudiantes(int? id)
+        {
+            
+                if (id == null || _context.Detallestbs == null)
+                {
+                    return NotFound();
+                }
+
+                var detallestb = await _context.Detallestbs
+                    .Include(d => d.IduserNavigation)
+                    .FirstOrDefaultAsync(m => m.Iduser == id);
+                if (detallestb == null)
+                {
+                    return NotFound();
+                }
+
+                return View(detallestb);
+            
+        }
 
         // GET: Detallestbs/Create
         public IActionResult Create()

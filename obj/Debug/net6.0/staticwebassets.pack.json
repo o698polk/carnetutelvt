@@ -9,6 +9,26 @@
       "PackagePath": "staticwebassets\\about.html"
     },
     {
+      "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\carnet\\ESCUDETO_UTE-LVT.png",
+      "PackagePath": "staticwebassets\\carnet\\ESCUDETO_UTE-LVT.png"
+    },
+    {
+      "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\carnet\\fondocanet3.png",
+      "PackagePath": "staticwebassets\\carnet\\fondocanet3.png"
+    },
+    {
+      "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\carnet\\fondocanet4.png",
+      "PackagePath": "staticwebassets\\carnet\\fondocanet4.png"
+    },
+    {
+      "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\carnet\\fondocanet5.png",
+      "PackagePath": "staticwebassets\\carnet\\fondocanet5.png"
+    },
+    {
+      "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\carnet\\fondocanet6.png",
+      "PackagePath": "staticwebassets\\carnet\\fondocanet6.png"
+    },
+    {
       "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\carnet\\imagen.jpg",
       "PackagePath": "staticwebassets\\carnet\\imagen.jpg"
     },
@@ -1427,6 +1447,10 @@
     {
       "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\uploads\\2b848fc2-502b-4fd7-8188-0dfebd8adbe4.jpg",
       "PackagePath": "staticwebassets\\uploads\\2b848fc2-502b-4fd7-8188-0dfebd8adbe4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\uploads\\a4248b47-e91c-43ab-be76-414888668813.png",
+      "PackagePath": "staticwebassets\\uploads\\a4248b47-e91c-43ab-be76-414888668813.png"
     },
     {
       "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\uploads\\d8c1d2a1-f3d6-40d1-93be-9f1a505c094e.jpg",
