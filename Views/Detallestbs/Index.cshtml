@@ -20,7 +20,16 @@
 					</div>
 					
 				</div>
+				<div class="container">
+					<form class="form" asp-action="Index">
+						<div class="form-group">
+							<input name="Ci" class="form-control" placeholder="Solo Numero de Cedula(Ingesa un numero de cedula)" />
+
+						</div>
+						<input type="submit" value="Buscar" class="btn btn-info">
+					</form>
 				<h3><a type="button" class="btn btn-success" asp-action="Create">Crear Nuevo</a><a type="button" class="btn btn-secondary" asp-controller="Usertbs" asp-action="Index">Usuarios</a></h3>
+				</div>
 				<div class="row">
 					<div class="col-md-12">
 						
@@ -28,7 +37,7 @@
 							<table class="table">
 								<thead class="thead-primary">
 									<tr>
-										<th>Select</th>
+										<th>@Html.DisplayNameFor(model => model.Id)</th>
                                         <th>@Html.DisplayNameFor(model => model.Imgcarnet)</th>
 										<th> @Html.DisplayNameFor(model => model.Fullname)</th>
                                         <th> @Html.DisplayNameFor(model => model.Surnames)</th>
@@ -49,10 +58,10 @@
                                     @foreach (var item in Model) {
 									<tr class="alert" role="alert">
 										<td>
-											<label class="checkbox-wrap checkbox-primary">
-												<input type="checkbox" checked>
-												<span class="checkmark"></span>
-											</label>
+												<div class="email">
+													<input type="text" value="@Html.DisplayFor(modelItem => item.Id)" readonly>
+													<span class="checkmark"></span>
+												</div>
 										</td>
 										<td>
 

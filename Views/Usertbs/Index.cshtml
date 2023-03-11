@@ -1,4 +1,4 @@
-﻿@model IEnumerable<carnetutelvt.Models.Usertb>
+﻿@model IEnumerable<carnetutelvt.Models.Usertb>  
 
 @{
     ViewData["Title"] = "Index";
@@ -19,7 +19,16 @@
 					</div>
 
 				</div>
+				<div class="container">
+				<form class="form" asp-action="Index">
+					<div class="form-group">
+						<input name="Email" class="form-control" placeholder="Solo Correos(Ingesa un correo)" />
+						
+					</div>
+					<input type="submit" value="Buscar"  class="btn btn-info">
+						 </form>
 				<h3><a type="button" class="btn btn-success" asp-action="Create">Crear Nuevo</a><a type="button" class="btn btn-secondary" asp-controller="Detallestbs" asp-action="Index">Detalles</a></h3>
+				</div>
 				<div class="row">
 					<div class="col-md-12">
 
@@ -27,7 +36,7 @@
 							<table class="table">
 								<thead class="thead-primary">
 									<tr>
-										<th>Select</th>
+									<th>@Html.DisplayNameFor(model => model.Id)</th>
 										<th>@Html.DisplayNameFor(model => model.Email)</th>
 										<th> @Html.DisplayNameFor(model => model.Passwords)</th>
 										<th> @Html.DisplayNameFor(model => model.Numberverify)</th>
@@ -50,10 +59,10 @@
 									{
 										<tr class="alert" role="alert">
 											<td>
-												<label class="checkbox-wrap checkbox-primary">
-													<input type="checkbox" checked>
+											<div class="email">
+												<input type="text" value="@Html.DisplayFor(modelItem => item.Id)" readonly>
 													<span class="checkmark"></span>
-												</label>
+											</div>
 											</td>
 											
 											<td>

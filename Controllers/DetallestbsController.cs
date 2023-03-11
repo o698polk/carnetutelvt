@@ -27,7 +27,7 @@ namespace carnetutelvt.Controllers
         }
 
         // GET: Detallestbs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? Ci )
         {
             if (_conter.HttpContext.Session.GetInt32("Id") == null || _conter.HttpContext.Session.GetInt32("Id") < 0 || _conter.HttpContext.Session.GetString("Rol") != "1")
             {
@@ -35,8 +35,18 @@ namespace carnetutelvt.Controllers
             }
             else
             {
-                var rgutelvtContext = _context.Detallestbs.Include(d => d.IduserNavigation);
-                return View(await rgutelvtContext.ToListAsync());
+				if (Ci == null)
+				{
+					var rgutelvtContext = _context.Detallestbs.Include(d => d.IduserNavigation);
+					return View(await rgutelvtContext.ToListAsync());
+				}
+				else
+				{
+					return View(await _context.Detallestbs.Where(u => u.Ci.Contains(Ci)).ToListAsync());
+				}
+
+
+				
             }
         }
 

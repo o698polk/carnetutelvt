@@ -9,6 +9,18 @@
       "PackagePath": "staticwebassets\\about.html"
     },
     {
+      "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\carnet\\imagen.jpg",
+      "PackagePath": "staticwebassets\\carnet\\imagen.jpg"
+    },
+    {
+      "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\carnet\\index.css",
+      "PackagePath": "staticwebassets\\carnet\\index.css"
+    },
+    {
+      "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\carnet\\index.html",
+      "PackagePath": "staticwebassets\\carnet\\index.html"
+    },
+    {
       "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\contact.html",
       "PackagePath": "staticwebassets\\contact.html"
     },
@@ -31,6 +43,10 @@
     {
       "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\css\\daterangepicker.css",
       "PackagePath": "staticwebassets\\css\\daterangepicker.css"
+    },
+    {
+      "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\css\\impresion.css",
+      "PackagePath": "staticwebassets\\css\\impresion.css"
     },
     {
       "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\css\\index.html",
@@ -1407,6 +1423,10 @@
     {
       "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\uploads\\028f49ff-14e5-4d5b-82b0-905274d9e10c.jpg",
       "PackagePath": "staticwebassets\\uploads\\028f49ff-14e5-4d5b-82b0-905274d9e10c.jpg"
+    },
+    {
+      "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\uploads\\2b848fc2-502b-4fd7-8188-0dfebd8adbe4.jpg",
+      "PackagePath": "staticwebassets\\uploads\\2b848fc2-502b-4fd7-8188-0dfebd8adbe4.jpg"
     },
     {
       "Id": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\uploads\\d8c1d2a1-f3d6-40d1-93be-9f1a505c094e.jpg",

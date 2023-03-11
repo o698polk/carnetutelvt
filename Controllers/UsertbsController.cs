@@ -36,9 +36,9 @@ namespace carnetutelvt.Controllers
         }
 
         // GET: Usertbs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? Email)
         {
-
+           
             if (_conter.HttpContext.Session.GetInt32("Id") == null || _conter.HttpContext.Session.GetInt32("Id") < 0 || _conter.HttpContext.Session.GetString("Rol")!="1")
 
             {
@@ -48,10 +48,22 @@ namespace carnetutelvt.Controllers
             }
             else
             {
-                return View(await _context.Usertbs.ToListAsync());
+				if (Email == null)
+				{
+					return View(await _context.Usertbs.ToListAsync());
+                }
+                else
+                {
+					return View(await _context.Usertbs.Where(u => u.Email.Contains(Email)).ToListAsync());
+				}
+				
             }
            
         }
+
+
+
+		
 
         // GET: Usertbs/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -194,7 +206,8 @@ namespace carnetutelvt.Controllers
         }
 
         // Enviar Correos
-
+ 
+        
         public dynamic EnviarCorreo(string para,string asunto,string bodyst)
         {
           
