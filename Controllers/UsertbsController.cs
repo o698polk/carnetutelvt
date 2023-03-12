@@ -25,16 +25,16 @@ namespace carnetutelvt.Controllers
         private const string rp0 = "0",rp1="1";
         private readonly IWebHostEnvironment _env;
         private readonly IHttpContextAccessor _conter;
-       
-        
-       
-        public UsertbsController(rgutelvtContext context, rgutelvtContext contextdeta, IWebHostEnvironment env, IHttpContextAccessor conter)
+        private IConfiguration _configuration;
+
+
+        public UsertbsController(rgutelvtContext context, rgutelvtContext contextdeta, IWebHostEnvironment env, IHttpContextAccessor conter, IConfiguration configuration)
         {
             _context = context;
             _env = env;
             _conter = conter;
             _contextdeta = contextdeta;
-          
+            _configuration= configuration ;
 
         }
 
@@ -152,12 +152,7 @@ namespace carnetutelvt.Controllers
                 return View();
             }
         }
-        public dynamic CorreoEnviar()
-        {
-            return EnviarCorreo("orsicen@gmail.com", "Verificar Funcion", "Si estan llegando los correo");
-          
-                
-        }
+   
         public IActionResult Logout()
         {
 
@@ -229,34 +224,17 @@ namespace carnetutelvt.Controllers
         // Enviar Correos
  
         
-        public dynamic EnviarCorreo(string para,string asunto,string bodyst)
+        public dynamic EnviarCorreo(string receptor, string asunto, string texto)
         {
           
             try
             {
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.From = new MailAddress("utelvtcarnet@gmail.com");
-                mailMessage.To.Add(para);
-                mailMessage.Subject=asunto;
-                mailMessage.Body = bodyst;
-                mailMessage.IsBodyHtml = true;
-                mailMessage.Priority = MailPriority.Normal;
-
-                // por si necesitas almacenar archivos en carpetas
-                string rutaArchivo = Path.Combine(_env.ContentRootPath, "../Temporal", "");
-
-                // configuracion de SMTP carnetel123
-
-                    SmtpClient smtep = new SmtpClient();
-                    smtep.Host = "smtp.live.com";
-                    smtep.Port = 25;
-                    smtep.EnableSsl = true;
-                    smtep.UseDefaultCredentials = true;
-                    string correodefaul = "utelvtcarnet@gmail.com";
-                    string clave = "carnetel123";
-
-                smtep.Credentials = new NetworkCredential(correodefaul, clave);
-                smtep.Send(mailMessage);
+                  HelperMail helpermail= new HelperMail(_configuration) ;
+                 string mensajefinal = "<h1>UTELVT, VERIFICA TU CUENTA DE USUARURIO,PARA GENERAR TU CARNET/ <h1/><h4> Click al Enlace:" + texto + " <h4/>"
+                                    ;
+                 helpermail.SendMail(receptor, asunto, mensajefinal);
+                ViewData["MENSAJE"] = "Mensaje enviado a '" + receptor + "'";
+             
             }
             catch (Exception ex)
             {
@@ -281,45 +259,88 @@ namespace carnetutelvt.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([Bind("Email,Passwords")] Usertb usertb)
         {
-            if (ModelState.IsValid)
+            if (usertb.Email != null && usertb.Passwords != null)
             {
-                var user = _context.Usertbs.Where(u => u.Email == usertb.Email).FirstOrDefault();
-                if (user != null)
+                if (ModelState.IsValid)
                 {
-                    ViewData["Error"] = rp0;
-                    return View();
-                }
-                else
-                {
-
-                    Random rnd = new Random();
-                    long ran = rnd.Next(5000870, 8000008);
-                    usertb.Passwords = EncrypData(usertb.Passwords);
-                    usertb.Datecreate = DateTime.Now;
-                    usertb.Dateupdate = DateTime.Now;
-                    usertb.Numberverify = ran.ToString();
-                    usertb.Verifyuser = 0;
-                    usertb.Rol = "0";
-                    Detallestb dll = new Detallestb();
-                    _context.Add(usertb);
-
-                    await _context.SaveChangesAsync();
-                    var usernw = _context.Usertbs.Where(u => u.Email == usertb.Email).FirstOrDefault();
-                    if (usernw != null)
+                    var user = _context.Usertbs.Where(u => u.Email == usertb.Email).FirstOrDefault();
+                    if (user != null)
                     {
-                        dll.Iduser = usernw.Id;
-                        dll.Datecreate = DateTime.Now;
-                        dll.Dateupdate = DateTime.Now;
-                        _contextdeta.Add(dll);
-                        await _contextdeta.SaveChangesAsync();
+                        ViewData["Error"] = rp0;
+                        return View();
                     }
-                    ViewData["Error"] = rp1;
-                    return View();
-                    //  return RedirectToAction(nameof(Index));
+                    else
+                    {
+
+                        Random rnd = new Random();
+                        long ran = rnd.Next(5000870, 8000008);
+                        usertb.Passwords = EncrypData(usertb.Passwords);
+                        usertb.Datecreate = DateTime.Now;
+                        usertb.Dateupdate = DateTime.Now;
+                        usertb.Numberverify = ran.ToString();
+                        usertb.Verifyuser = 0;
+                        usertb.Rol = "0";
+                        Detallestb dll = new Detallestb();
+                        _context.Add(usertb);
+
+                        await _context.SaveChangesAsync();
+                        var usernw = _context.Usertbs.Where(u => u.Email == usertb.Email).FirstOrDefault();
+                        if (usernw != null)
+                        {
+                           
+                            dll.Iduser = usernw.Id;
+                            dll.Datecreate = DateTime.Now;
+                            dll.Dateupdate = DateTime.Now;
+                            _contextdeta.Add(dll);
+                            await _contextdeta.SaveChangesAsync();
+                            // EnviarCorreo(usertb.Email, "UTELVT CARNET, VERIFICAR", "http://polkdev.somee.com/Usertbs/Verificar/" + usertb.Numberverify);
+                            EnviarCorreo(usertb.Email, "UTELVT CARNET, VERIFICAR", "https://localhost:7288/Usertbs/Verificar/" + usertb.Numberverify);
+                        
+                        }
+                        ViewData["Error"] = rp1;
+                        return View();
+                        //  return RedirectToAction(nameof(Index));
+                    }
                 }
             }
-            return View(usertb);
+            ViewData["Error"] = rp0;
+            return View();
         }
+
+        //Funcion de verificacion
+        public async Task<IActionResult> Verificar(int? id)
+        {
+
+            if (id == null || _context.Usertbs == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+
+            
+
+            var usertb = await _context.Usertbs.FirstOrDefaultAsync(m => m.Numberverify == id.ToString());
+            
+            if (usertb == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                    usertb.Verifyuser =1 ;
+                    usertb.Dateupdate = DateTime.Now;
+                    _context.Update(usertb);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Login));
+             }
+               
+            }
+         
+
+        }
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -441,13 +462,14 @@ namespace carnetutelvt.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("Email,Passwords")] Usertb userdt)
         {
+           
             if (userdt.Email == null || userdt.Passwords == null)
             {
                 ViewData["Error"] = rp0;
                 return View();
             }
-
-            if (ModelState.IsValid)
+           
+                if (ModelState.IsValid)
             {
                 try
                 {
@@ -460,12 +482,22 @@ namespace carnetutelvt.Controllers
                     }
                     else
                     {
-                        string[] cadena = user.Email.Split("@");
+                        if (user.Verifyuser==1)
+                        { 
+                            string[] cadena = user.Email.Split("@");
                         _conter.HttpContext.Session.SetString("name", cadena[0]);
                         _conter.HttpContext.Session.SetString("email", user.Email);
                         _conter.HttpContext.Session.SetInt32("Id", user.Id);
                         _conter.HttpContext.Session.SetString("Rol", user.Rol);
                         return RedirectToAction(nameof(Tablero));
+                        }
+                        else
+                        {
+                            // EnviarCorreo(usertb.Email, "UTELVT CARNET, VERIFICAR", "http://polkdev.somee.com/Usertbs/Verificar/" + usertb.Numberverify);
+                            EnviarCorreo(user.Email, "UTELVT CARNET, VERIFICAR", "https://localhost:7288/Usertbs/Verificar/" + user.Numberverify);
+                            ViewData["Error"] = rp0;
+                            return View();
+                        }
                     }
 
                 }

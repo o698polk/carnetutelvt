@@ -42,7 +42,17 @@
         </form>
 
     </div>
-    <h1> @ViewData["Error"]</h1>
+    <div class="respuesta">
+        @if (ViewData["Error"] == "1")
+        {
+            <strong style="color:green">Cuenta creada correctamente: </strong> <p style="color:blueviolet">Revisa tu correo y Verifica tu cuenta</p>
+           
+        }
+        else @if (ViewData["Error"] == "0")
+        {
+            <strong style="color:red">Error en la creación (Tal vez la cuenta ya existe)</strong>
+        }
+    </div>
 </div>
 
 

@@ -136,14 +136,24 @@
                 </form>
                 <div class="container">
                     <center>
-                            <h1 class="mb-5"><span class="d-block"></span>Completa tus datos  para generar el Carnet <span class="typed-words"></span></h1>
+                        <h1 class="mb-5"><span class="d-block"></span>Completa tus datos para generar el Carnet. <span class="typed-words"></span></h1>
                         </center>
-                 <h1> @ViewData["Error"]</h1>
+                    <div class="respuesta">
+                        @if (ViewData["Error"] == "1")
+                        {
+                            <strong style="color:green">Cuenta creada correctamente: </strong> <p style="color:blueviolet">Revisa tu correo y Verifica tu cuenta</p>
+
+                        }
+                        else @if (ViewData["Error"] == "0")
+                        {
+                            <strong style="color:red">Error en la creación </strong>
+                        }
+                    </div>
                 </div>
             }
             else
             {
-                <div class="carnet" >
+                <div class="carnet" id="carnetid">
                  
                         <div class="content">
                          <div class="barralogo"> <img src="/carnet\ESCUDETO_UTE-LVT.png" id="logout"alt="Mi Foto">UTELVT</div>  
@@ -162,11 +172,27 @@
                         </div>
                         </div>
                  </div>
-            }
-           
+                 // flores creo este formato de imprewsion 
+                <div id="contenedorCanvas" ></div>
+                <div class="card__content">
+                    <div class="card__date">GENERADO</div>
+                    <time datetime="2023-03-10" id="div-hora" class="card__date"></time>
+                    <span class="card__title">
+                        El Carnet listo para Imprimir!!</span>
 
-    </div>
-    
+                            <br>
+                    <input type="button" id="btnCapturar" class="button-arounder" value="Imprimir" />
+               
+                </div>
+
+                
+            }
+
+
+          
+  
+
+        </div>
     </center>
 </div>
 

@@ -101,7 +101,8 @@ namespace carnetutelvt.Models
                     .HasColumnName("email");
 
                 entity.Property(e => e.Numberverify)
-                    .HasColumnType("text")
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
                     .HasColumnName("numberverify");
 
                 entity.Property(e => e.Passwords)

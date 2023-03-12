@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="~/css/daterangepicker.css" asp-append-version=" true">
     <link rel="stylesheet" href="~/css/aos.css" asp-append-version=" true">
     <link rel="stylesheet" href="~/css/style.css" asp-append-version=" true">
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version=" true" media="screen">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version=" true" >
  
     <link rel="stylesheet" href="~/table-06/css/style.css" asp-append-version=" true">
     
@@ -43,10 +43,10 @@
         <div class="container">
             <div class="site-navigation">
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="logo m-0"><strong> UTELVT CARNET  </strong> <span class=""></span></a>
-               <!--  <a asp-area="" asp-controller="Usertbs" asp-action="CorreoEnviar" class="logo m-0"><strong> Correo </strong> <span class=""></span></a>
-             -->  
+            <!--  <a asp-area="" asp-controller="Usertbs" asp-action="CorreoEnviar" class="logo m-0"><strong> Correo </strong> <span class=""></span></a>
+                -->
 
-             <ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right">
+                <ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right">
                    
                     @if (context.HttpContext.Session.GetInt32("Id") > 0)
                     {
@@ -67,7 +67,7 @@
                     {
                         <li><a asp-area="" type="button " class="btn btn-info" asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-area="" type="button" class="btn btn-secondary" asp-controller="Usertbs" asp-action="Register">Crear Cuenta</a></li>
-                        <li><a asp-area="" type="button" class="btn btn-success" asp-controller="Usertbs" asp-action="Login">Iniciar Sesion</a></li>
+                        <li><a asp-area="" type="button" class="btn btn-success" asp-controller="Usertbs" asp-action="Login">Iniciar Sesión</a></li>
                     }
                  
                 
@@ -106,41 +106,19 @@
     <script src="~/js/daterangepicker.js"></script>
     <script src="~/js/custom.js"></script>
     <script src="~/js/typed.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
     <!-- 
     <script src="~/table-06/js/typed.js"></script>
     <script src="~/table-06/js/jquery.min.js"></script>
     <script src="~/table-06/js/popper.js"></script>
     <script src="~/table-06/js/bootstrap.min.js"></script>
     <script src="~/table-06/js/main.js"></script>-->
-    <script>
-        $(function () {
-            var slides = $('.slides'),
-                images = slides.find('img');
-
-            images.each(function (i) {
-                $(this).attr('data-id', i + 1);
-            })
-
-            var typed = new Typed('.typed-words', {
-                strings: ["Que esperas", " Actualizate", " Vamos", " UTELVT"],
-                typeSpeed: 80,
-                backSpeed: 80,
-                backDelay: 4000,
-                startDelay: 1000,
-                loop: true,
-                showCursor: true,
-                preStringTyped: (arrayPos, self) => {
-                    arrayPos++;
-                    console.log(arrayPos);
-                    $('.slides img').removeClass('active');
-                    $('.slides img[data-id="' + arrayPos + '"]').addClass('active');
-                }
-
-            });
-        })
-    </script>
-
+ 
     
+
+
+
+
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
