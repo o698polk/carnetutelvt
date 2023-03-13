@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "37Qy8Rk8W72jzyyTO7c7N4gwfqubPwCLTz7+qvDp1TI=",
+  "Hash": "qH5Z5m9rQkh17DzKRYjFHQ+/koVUL2XPpm1Ds6dm4yA=",
   "Source": "carnetutelvt",
   "BasePath": "_content/carnetutelvt",
   "Mode": "Default",
@@ -321,6 +321,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\impresion.css"
+    },
+    {
+      "Identity": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\css\\index.css",
+      "SourceId": "carnetutelvt",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\",
+      "BasePath": "_content/carnetutelvt",
+      "RelativePath": "css/index.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\index.css"
     },
     {
       "Identity": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\css\\index.html",
@@ -2446,6 +2463,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\popper.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\js\\script.js",
+      "SourceId": "carnetutelvt",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\",
+      "BasePath": "_content/carnetutelvt",
+      "RelativePath": "js/script.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\script.js"
     },
     {
       "Identity": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\js\\site.js",
@@ -6171,12 +6205,12 @@
       "OriginalItemSpec": "wwwroot\\uploads\\028f49ff-14e5-4d5b-82b0-905274d9e10c.jpg"
     },
     {
-      "Identity": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\uploads\\1a5c659e-e637-442a-b641-782660d76f06.jpg",
+      "Identity": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\uploads\\0730a403-8c16-42e8-9fcf-b9a566e82521.png",
       "SourceId": "carnetutelvt",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\",
       "BasePath": "_content/carnetutelvt",
-      "RelativePath": "uploads/1a5c659e-e637-442a-b641-782660d76f06.jpg",
+      "RelativePath": "uploads/0730a403-8c16-42e8-9fcf-b9a566e82521.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -6185,7 +6219,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\1a5c659e-e637-442a-b641-782660d76f06.jpg"
+      "OriginalItemSpec": "wwwroot\\uploads\\0730a403-8c16-42e8-9fcf-b9a566e82521.png"
     },
     {
       "Identity": "C:\\Users\\polkv\\Videos\\prt\\carnetutelvt\\wwwroot\\uploads\\2b848fc2-502b-4fd7-8188-0dfebd8adbe4.jpg",

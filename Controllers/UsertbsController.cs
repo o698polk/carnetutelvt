@@ -16,6 +16,9 @@ using System.Net;
 using System.Diagnostics.Metrics;
 using Microsoft.AspNetCore.Http;
 using carnetutelvt.Controllers;
+using System.Text;
+using System.Reflection;
+
 namespace carnetutelvt.Controllers
 {
     public class UsertbsController : Controller
@@ -64,9 +67,28 @@ namespace carnetutelvt.Controllers
            
         }
 
+        public async Task<IActionResult> Chatbot(string? Email)
+        {
 
+            if (_conter.HttpContext.Session.GetInt32("Id") == null || _conter.HttpContext.Session.GetInt32("Id") < 0 || _conter.HttpContext.Session.GetString("Rol") != "1")
 
-		//Generar Codigo QR
+            {
+
+                return RedirectToAction(nameof(Login));
+
+            }
+            else
+            {
+            
+            
+                    return View();
+             
+                
+            }
+
+        }
+
+        //Generar Codigo QR
 
 
         public void GenerarQr(string webtex)
@@ -210,6 +232,15 @@ namespace carnetutelvt.Controllers
                     return RedirectToAction(nameof(Login));
                 }
             }
+        }
+        // VERIFICAR SI UN STRING ES ENCRIPTADO
+        public bool IsEncrypted(string inputString)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(inputString);
+            SHA256Managed sha256 = new SHA256Managed();
+            byte[] hash = sha256.ComputeHash(bytes);
+            string hashedString = Encoding.UTF8.GetString(hash);
+            return (hashedString == inputString);
         }
         // Encriptar datos
         public string EncrypData(string pass)
@@ -423,7 +454,7 @@ namespace carnetutelvt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Passwords,Verifyuser,Numberverify,Rol,Datecreate")] Usertb usertb)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Passwords,Verifyuser,Rol")] Usertb usertb)
         {
             
             if (id != usertb.Id)
@@ -435,10 +466,27 @@ namespace carnetutelvt.Controllers
             {
                 try
                 {
-                    usertb.Passwords = EncrypData(usertb.Passwords);
-                    usertb.Dateupdate = DateTime.Now;
-                    _context.Update(usertb);
-                    await _context.SaveChangesAsync();
+                    var miObjeto = _context.Usertbs.FirstOrDefault(x => x.Id == id);
+                    if (!string.IsNullOrEmpty(usertb.Passwords))
+                       {
+                        miObjeto.Passwords = EncrypData(usertb.Passwords);
+                    }
+
+                    if (!string.IsNullOrEmpty(usertb.Email))
+                    {
+                        miObjeto.Email = usertb.Email;
+                    }
+
+                   
+                    miObjeto.Verifyuser = usertb.Verifyuser;
+                   
+                    miObjeto.Rol = usertb.Rol;
+
+                    miObjeto.Dateupdate = DateTime.Now;
+                      
+                       await _context.SaveChangesAsync();
+                    
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -455,8 +503,7 @@ namespace carnetutelvt.Controllers
             }
             return View(usertb);
         }
-
-
+       
         //lOGIN
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -483,12 +530,14 @@ namespace carnetutelvt.Controllers
                     else
                     {
                         if (user.Verifyuser==1)
-                        { 
+                        {
+                            var detall = _contextdeta.Detallestbs.Where(u => u.Iduser == user.Id ).FirstOrDefault();
                             string[] cadena = user.Email.Split("@");
                         _conter.HttpContext.Session.SetString("name", cadena[0]);
                         _conter.HttpContext.Session.SetString("email", user.Email);
                         _conter.HttpContext.Session.SetInt32("Id", user.Id);
                         _conter.HttpContext.Session.SetString("Rol", user.Rol);
+                        _conter.HttpContext.Session.SetString("imgperfil", "/uploads\\\\" + detall.Imgcarnet);   
                         return RedirectToAction(nameof(Tablero));
                         }
                         else

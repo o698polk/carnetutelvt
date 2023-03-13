@@ -20,21 +20,20 @@
                     <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
             <div class="form-group">
                
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" class="form-control"  />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             </div>
             <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
             <div class="form-group">
-                
-                <input asp-for="Passwords" class="form-control" />
+
+                        <input asp-for="Passwords" class="form-control" value="" />
                 <span asp-validation-for="Passwords" class="text-danger"></span>
             </div>
             </div>
   
              <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
             <div class="form-group">
-              
                         <select asp-for="Verifyuser" class="form-select" aria-label="Elegir verificación">
 
                             <option selected value="0">No</option>
@@ -44,13 +43,7 @@
                 <span asp-validation-for="Verifyuser" class="text-danger"></span>
             </div>
             </div>
-                <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                    <div class="form-group">
-                        <input asp-for="Numberverify" class="form-control" />
-                        <span asp-validation-for="Numberverify" class="text-danger"></span>
-                    
-                    </div>
-                </div>
+                
                 <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
                     <div class="form-group">
                         <select asp-for="Rol" class="form-select" aria-label="Elegir Rol">
@@ -63,13 +56,7 @@
                         <span asp-validation-for="Rol" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                    <div class="form-group">
-
-                        <input asp-for="Datecreate" class="form-control" asp-items="ViewBag.Datecreate" readonly>
-                        <span asp-validation-for="Datecreate" class="text-danger"></span>
-                    </div>
-                </div>
+               
              <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

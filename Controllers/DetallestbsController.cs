@@ -159,7 +159,7 @@ namespace carnetutelvt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Fullname,Surnames,Specialty,Faculty,Ci,Iduser,Datecreate,Imgcarnet")] Detallestb detallestb, IFormFile Imgcarnett)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Fullname,Surnames,Specialty,Faculty,Ci,Imgcarnet")] Detallestb detallestb, IFormFile Imgcarnett)
         {
          
             if (id != detallestb.Id)
@@ -167,26 +167,40 @@ namespace carnetutelvt.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+          
                 try
                 {
-					
-					if (Imgcarnett != null)
+                    var miObjeto = _context.Detallestbs.FirstOrDefault(x => x.Id == id);
+                   
+
+                    miObjeto.Fullname = detallestb.Fullname;
+                    miObjeto.Surnames = detallestb.Surnames;
+                    miObjeto.Specialty = detallestb.Specialty;
+                    miObjeto.Faculty = detallestb.Faculty;
+                    miObjeto.Ci = detallestb.Ci;
+                    
+
+                    miObjeto.Dateupdate = DateTime.Now;
+
+                    
+
+
+                    if (Imgcarnett != null)
                     {
                         if (detallestb.Imgcarnet != null)
                         {
                             var uploads = Path.Combine(_environment.WebRootPath, "uploads\\" + detallestb.Imgcarnet);
                             System.IO.File.Delete(uploads);
                         }
-                   
-                        detallestb.Imgcarnet = subirimg(Imgcarnett);
+
+                        miObjeto.Imgcarnet = subirimg(Imgcarnett);
 					}
                    
-                    detallestb.Dateupdate= DateTime.Now;
-                    _context.Update(detallestb);
+                
+                
                     await _context.SaveChangesAsync();
-                }
+                return RedirectToAction(nameof(Index));
+            }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!DetallestbExists(detallestb.Id))
@@ -198,8 +212,8 @@ namespace carnetutelvt.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
-            }
+               
+         
             ViewData["Iduser"] = new SelectList(_context.Usertbs, "Id", "Id", detallestb.Iduser);
             return View(detallestb);
         }

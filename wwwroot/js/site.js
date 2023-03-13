@@ -62,18 +62,24 @@ $boton.addEventListener("click", () => {
 
             $contenedorCanvas.appendChild(canvas);
         });
+    setTimeout(function () {
+        $objetivo.style.display = "none";
+        window.print();
+
+   
+
+    }, 2000);
+    setTimeout(function () {
+
+        $objetivo.style.display = "block";
+
+    }, 10000);
 });
-setTimeout(function () {
-    $objetivo.style.display = "none";
-    window.print();
+window.addEventListener("afterprint", function () {
+    // Realizar alguna acción después de que se complete la impresión
+    window.location.reload();
+});
 
-
-}, 5000);
-setTimeout(function () {
-
-    $objetivo.style.display = "block";
-
-}, 10000);
 
 
 //----------------------------------------------------//

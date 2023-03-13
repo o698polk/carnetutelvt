@@ -53,7 +53,9 @@
                          <li >
                             <a type="button" class="btn btn-info" style="text-transform: uppercase; color:black;" asp-area="" asp-controller="Usertbs" asp-action="Tablero"> <strong>@context.HttpContext.Session.GetString("name")</strong> </a>
                         </li>
-
+                        <li>
+                            <a type="button" class="btn btn-warning style="text-transform: uppercase; color:black;" asp-area="" asp-controller="Usertbs" asp-action="Chatbot"> <strong>CHATBOT</strong> </a>
+                        </li>
                        
                         if (context.HttpContext.Session.GetString("Rol") == "1")
                         {
@@ -107,6 +109,7 @@
     <script src="~/js/custom.js"></script>
     <script src="~/js/typed.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
+    <script src="~/js/script.js" asp-append-version="true"></script>
     <!-- 
     <script src="~/table-06/js/typed.js"></script>
     <script src="~/table-06/js/jquery.min.js"></script>
